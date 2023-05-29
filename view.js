@@ -25,4 +25,10 @@ for (var i = 0; i < getMovieData.length; i++) {
   updateButtonCell.appendChild(deleteButton);
   tr.appendChild(updateButtonCell);
   tBody.appendChild(tr);
+
+  updateButton.addEventListener("click", function () {
+    var movieName = document.getElementById("");
+  });
+  
+ 
 }

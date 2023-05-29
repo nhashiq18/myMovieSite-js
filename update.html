@@ -31,90 +31,83 @@
         <form id="myForm">
           <div class="mb-3">
             <label class="form-label textColor"><b><i>Movie Name</i></b></label>
-            <input type="text" placeholder="write movie name here..." class="form-control" id="moviename">
-            <div style="color: red; font-style: italic;" id="movieNameError"></div>
+            <input type="text" placeholder="write movie name here..." class="form-control" id="updatemoviename">
+            <p id="movienameerror"></p>
           </div>
           <div class="mb-3">
             <label class="form-label textColor"><b><i>Description</i></b></label>
             <div class="form-floating">
-              <textarea class="form-control" id="description" style="height: 70px;"></textarea>
+              <textarea class="form-control" id="updatedescription" style="height: 70px;"></textarea>
               <label for="floatingTextarea2">Details...</label>
             </div>
-            <div style="color: red; font-style: italic;" id="detailsError"></div>
           </div>
           <div class="mb-3">
             <label class="form-label textColor"><b><i>Release Date</i></b></label>
             <input type="date" class="form-control" id="releasedate">
-            <div style="color: red; font-style: italic;" id="dateError"></div>
           </div>
           <div class="mb-3">
             <label class="form-label textColor"><b><i>Language</i></b></label> <br>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="English">
-              <label class="form-check-label textColor" for="inlineRadio1">English</label>
+              <label class="form-check-label textColor" for="updateinlineRadio1">English</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="French">
-              <label class="form-check-label textColor" for="inlineRadio2">French</label>
+              <label class="form-check-label textColor" for="updateinlineRadio2">French</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="German">
-              <label class="form-check-label textColor" for="inlineRadio3">German</label>
+              <label class="form-check-label textColor" for="updateinlineRadio3">German</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Arabic">
-              <label class="form-check-label textColor" for="inlineRadio4">Arabic</label>
+              <label class="form-check-label textColor" for="updateinlineRadio4">Arabic</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="Latin">
-              <label class="form-check-label textColor" for="inlineRadio5">Latin</label>
+              <label class="form-check-label textColor" for="updateinlineRadio5">Latin</label>
             </div>
-            <div style="color: red; font-style: italic;" id="radioError"></div>
           </div>
           <div class="mb-3">
             <label class="form-label textColor"><b><i>Category</i></b></label> <br>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Action">
+              <input class="form-check-input" type="checkbox" id="updateinlineCheckbox1" value="Action">
               <label class="form-check-label textColor" for="inlineCheckbox1">Action</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Adventure">
+              <input class="form-check-input" type="checkbox" id="updateinlineCheckbox2" value="Adventure">
               <label class="form-check-label textColor" for="inlineCheckbox2">Adventure</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Horror">
+              <input class="form-check-input" type="checkbox" id="updateinlineCheckbox3" value="Horror">
               <label class="form-check-label textColor" for="inlineCheckbox3">Horror</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Drama">
+              <input class="form-check-input" type="checkbox" id="updateinlineCheckbox4" value="Drama">
               <label class="form-check-label textColor" for="inlineCheckbox4">Drama</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Comedy">
+              <input class="form-check-input" type="checkbox" id="updateinlineCheckbox5" value="Comedy">
               <label class="form-check-label textColor" for="inlineCheckbox5">Comedy</label>
             </div>
-            <div style="color: red; font-style: italic;" id="checkboxError"></div>
           </div>
 
           <div class="mb-3 row">
             <label class="form-label textColor"><b><i>Director Name</i></b></label>
             <div class="col">
-              <input type="text" class="form-control" placeholder="first name" aria-label="First name" id="firstname">
-              <div style="color: red; font-style: italic;" id="NameError"></div>
+              <input type="text" class="form-control" placeholder="first name" aria-label="First name" id="updatefirstname">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="last name" aria-label="Last name" id="lastname">
-              <div style="color: red; font-style: italic;" id="NameError"></div>
+              <input type="text" class="form-control" placeholder="last name" aria-label="Last name" id="updatelastname">
             </div>
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label textColor"><b><i>Email Address</i></b></label>
-            <input type="email" placeholder="write email address here..." class="form-control" id="directoremail" aria-describedby="emailHelp">
-            <div style="color: red; font-style: italic;" id="emailError"></div>
+            <input type="email" placeholder="write email address here..." class="form-control" id="updatedirectoremail" aria-describedby="emailHelp">
           </div>
           <div class="mb-3
             <label class="form-label textColor"><b><i>Runtime</i></b></label>
-            <select class="form-select" aria-label="Default select example" id="runtimedropdown">
+            <select class="form-select" aria-label="Default select example" id="updateruntimedropdown">
               <option value="">Select movie runtime</option>
               <option value="Below 1h">Below 1h</option>
               <option value="1h to 2h">1h to 2h</option>
@@ -141,22 +134,8 @@
     </div>
   </div>
 
-  <!-- <footer>
-    <nav>
-      <ul class="footer-menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Movies</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="footer-info">
-      <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
-    </div>
-  </footer> -->
-  
-
-  <script src="index.js"></script>
+ 
+  <script src="view.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

@@ -26,6 +26,21 @@ body{
   }
 
 
+.log-btn{
+  background-color: #ccdae6;
+  color: black;
+  font-weight: bold;
+}
+.log-btn:hover{
+  background-color: #198754;
+}
+.movie-logo{
+  height: 200px;
+  width: 300px;
+  margin-left: 90px;
+  margin-bottom: 10px;
+}
+
 
 
 

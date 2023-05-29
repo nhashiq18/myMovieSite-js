@@ -31,7 +31,7 @@ document.addEventListener("submit", function (event) {
   else if(op4.checked){
     language=op4.value;
   }
-  else{
+  else if(op5.checked){
     language=op5.value;
   }
 
@@ -48,35 +48,56 @@ document.addEventListener("submit", function (event) {
   id++;
 
 
+  //error handle func
+
+  function errorFunc(id, errorMessage){
+    id.innerHTML = errorMessage;
+  }
+
   //validation
   //name
+  {
+    
+  }
   var movieNameRegex = /^[A-Za-z0-9\s\-]+$/;
-  if (movieName.trim() === "") {
-      alert("Movie name cannot be empty!")
+  if (movieName === "") {
+      errorFunc(document.getElementById("movieNameError"), "name field cannot be empty!");
       return;
   }else if(!movieNameRegex.test(movieName)){
-    alert("Invalid movie name. Only letters, numbers, spaces, and dashes are allowed.");
+      errorFunc(document.getElementById("movieNameError"),"Invalid movie name. Only letters, numbers, spaces, and dashes are allowed.")
     return;
+  }else {
+    errorFunc(document.getElementById("movieNameError"),"")
   }
  
   //comment
   if (description === "") {
-    alert("Please write movie description");
+    errorFunc(document.getElementById("detailsError"), "description cannot be empty!");
     return;
+  }else {
+    errorFunc(document.getElementById("detailsError"), "");
   }
 
   //date
-  if (releaseDate.trim() === "") {
-    alert("Please add release date");
+  if (releaseDate === "") {
+    errorFunc(document.getElementById("dateError"), "Please add release date");
     return;
+  }else{
+    errorFunc(document.getElementById("dateError"), "");
   }
 
-  
+  if (language === "") {
+    errorFunc(document.getElementById("radioError"), "Please select language");
+  }else{
+    errorFunc(document.getElementById("radioError"), "");
+  }
 
   //category-checkbox
   if(checkboxArray.length === 0){
-    alert("Please select movie category");
+    errorFunc(document.getElementById("checkboxError"), "Please select movie category");
     return;
+  }else{
+    errorFunc(document.getElementById("checkboxError"), "");
   }
 
   //director name
@@ -84,29 +105,36 @@ document.addEventListener("submit", function (event) {
   var lastNameRegex = /^[A-Za-z\s]+$/;
 
   if (directorFirstName.trim() === "") {
-    alert("Director first-name cannot be empty!");
+    errorFunc(document.getElementById("NameError"), "Please insert first name");
     return;
   }else if(!firstNameRegex.test(directorFirstName)){
-    alert("Invalid first-name. Only letters and spaces are allowed.")
+    errorFunc(document.getElementById("NameError"), "Please insert first name");
     return;
+  }else {
+    errorFunc(document.getElementById("NameError"), "");
   }
+
   if (directorLastName.trim() === "") {
-    alert("Director last-name cannot be empty!");
+    errorFunc(document.getElementById("NameError"), "Please insert last name");
     return;
   }else if(!lastNameRegex.test(directorLastName)){
-    alert("Invalid last-name. Only letters and spaces are allowed.")
+    errorFunc(document.getElementById("NameError"), "Please insert last name");
     return;
+  }else{
+    errorFunc(document.getElementById("NameError"), "");
   }
   
 
   //email
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (directorEmail === "") {
-    alert("Email cannot be empty!");
+    errorFunc(document.getElementById("emailError"), "Please insert valid email address. e.g: a@gmail.com");
     return;
   }else if (!emailRegex.test(directorEmail)) {
-    alert("Invalid email address.")
+    errorFunc(document.getElementById("emailError"), "Please insert valid email address. e.g: a@gmail.com");
     return;
+  }else {
+    errorFunc(document.getElementById("emailError"), "");
   }
 
   //runtime dropdown
@@ -145,6 +173,7 @@ function saveMovieData(movie) {
 }
 saveMovieData(movie);
 alert("Movie Form Data Submitted!");
+location.reload();
 
 });
  var id = 0;

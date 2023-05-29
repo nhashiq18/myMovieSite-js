@@ -1,40 +1,161 @@
+document.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-function validateMovieName() {
-    var movieNameInput = document.getElementById("movieNameInput");
-    var validationMessage = document.getElementById("validationMessage");
-    var movieNameRegex = /^[A-Za-z0-9\s\-]+$/;
-  
-    var movieName = movieNameInput.value.trim();
-  
-    if (movieName === "") {
-      validationMessage.textContent = "Movie name cannot be empty.";
-    } else if (!movieNameRegex.test(movieName)) {
-      validationMessage.textContent = "Invalid movie name. Only letters, numbers, spaces, and dashes are allowed.";
-    } else {
-      validationMessage.textContent = "Movie name is valid!";
-      // Perform further actions or submit the form
-    }
-  }
-  
+  //gettinginput from form
+  var movieName = document.getElementById("moviename").value;
+  var directorFirstName = document.getElementById("firstname").value;
+  var directorLastName = document.getElementById("lastname").value;
+  var directorEmail = document.getElementById("directoremail").value;
+  var releaseDate = document.getElementById("releasedate").value;
+  var language = document.getElementsByName("inlineRadioOptions");
+  var categoryCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
 
+  var form = this.getElementById("myForm");
+
+  var op1 = document.getElementById("inlineRadio1")
+  var op2 = document.getElementById("inlineRadio2")
+  var op3 = document.getElementById("inlineRadio3")
+  var op4 = document.getElementById("inlineRadio4")
+  var op5 = document.getElementById("inlineRadio5")
+
+  var language = "";
   if (op1.checked) {
-    var language=op1.value;
+    language=op1.value;
   }
   else if(op2.checked){
-    var language=op2.value;
+    language=op2.value;
   }
   else if(op3.checked){
-    var language=op3.value;
+    language=op3.value;
   }
   else if(op4.checked){
-    var language=op4.value;
+    language=op4.value;
   }
-  else{
-    var language=op5.value;
+  else if(op5.checked){
+    language=op5.value;
   }
 
-  //languages-radio
-  if (!(language[0].checked || language[1].checked || language[2].checked || language[3].checked || language[4].checked)) {
-    alert("Please select a language");
+  // Create an array to store the selected values
+  var checkboxArray = [];
+
+  // Iterate over the selected checkboxes and add their values to the array
+  categoryCheckbox.forEach((checkbox) => {
+    checkboxArray.push(checkbox.value);
+  });
+
+  var runtime = document.getElementById("runtimedropdown").value;
+  var description = document.getElementById("description").value;
+  id++;
+
+
+  //error handle func
+
+  function errorFunc(id, errorMessage){
+    id.innerHTML = errorMessage;
+  }
+
+  //validation
+  //name
+  
+  var movieNameRegex = /^[A-Za-z0-9\s\-]+$/;
+  if (movieName === "") {
+      errorFunc(document.getElementById("movieNameError"), "name field cannot be empty!");
+      return;
+  }else if(!movieNameRegex.test(movieName)){
+      errorFunc(document.getElementById("movieNameError"),"Invalid movie name. Only letters, numbers, spaces, and dashes are allowed.")
     return;
   }
+ 
+  //comment
+  if (description === "") {
+    errorFunc(document.getElementById("detailsError"), "description cannot be empty!");
+    return;
+  }
+
+  //date
+  if (releaseDate === "") {
+    errorFunc(document.getElementById("dateError"), "Please add release date");
+    return;
+  }
+
+  if (language === "") {
+    errorFunc(document.getElementById("radioError"), "Please select language");
+  }
+
+  //category-checkbox
+  if(checkboxArray.length === 0){
+    errorFunc(document.getElementById("checkboxError"), "Please select movie category");
+    return;
+  }
+
+  //director name
+  var firstNameRegex = /^[A-Za-z\s]+$/;
+  var lastNameRegex = /^[A-Za-z\s]+$/;
+
+  if (directorFirstName.trim() === "") {
+    errorFunc(document.getElementById("NameError"), "Please insert first name");
+    return;
+  }else if(!firstNameRegex.test(directorFirstName)){
+    errorFunc(document.getElementById("NameError"), "Please insert first name");
+    return;
+  }
+
+  if (directorLastName.trim() === "") {
+    errorFunc(document.getElementById("NameError"), "Please insert last name");
+    return;
+  }else if(!lastNameRegex.test(directorLastName)){
+    errorFunc(document.getElementById("NameError"), "Please insert last name");
+    return;
+  }
+  
+
+  //email
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (directorEmail === "") {
+    errorFunc(document.getElementById("emailError"), "Please insert valid email address. e.g: a@gmail.com");
+    return;
+  }else if (!emailRegex.test(directorEmail)) {
+    errorFunc(document.getElementById("emailError"), "Please insert valid email address. e.g: a@gmail.com");
+    return;
+  }
+
+  //runtime dropdown
+  if (runtime.value === "") {
+    alert("Please select movie runtime")
+    return;
+  }
+
+  //creating movie obj
+  var movie = {
+    movieName: movieName,
+    firstName: directorFirstName,
+    lastName: directorLastName,
+    directorEmail: directorEmail,
+    releaseDate:releaseDate,
+    language: language,
+    checkboxArray: checkboxArray,
+    runtime: runtime,
+    description: description,
+};
+form.reset();
+
+//saving to local storage
+var movieData = localStorage.getItem("movieData");
+if (!movieData) {
+    movieData = [];
+} else {
+    movieData = JSON.parse(movieData);
+}
+
+//json
+function saveMovieData(movie) {
+    movieData.push(movie);
+    var movieDataToString = JSON.stringify(movieData)
+    localStorage.setItem("movieData", movieDataToString);
+}
+saveMovieData(movie);
+alert("Movie Form Data Submitted!");
+location.reload();
+
+});
+ var id = 0;
