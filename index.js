@@ -10,7 +10,7 @@ document.addEventListener("submit", function (event) {
   var language = document.getElementsByName("inlineRadioOptions");
   var categoryCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
 
-  var form = this.getElementById("myForm");
+  var form = document.getElementById("myForm");
 
   var op1 = document.getElementById("inlineRadio1")
   var op2 = document.getElementById("inlineRadio2")
@@ -142,9 +142,26 @@ document.addEventListener("submit", function (event) {
     alert("Please select movie runtime")
     return;
   }
+  const generateId = () => {
+    const factor1 = Math.floor(Math.random() * 100);
+    const factor2 = Date.now();
+    const characters =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+        );
+    }
+  
+    return factor1 + result + factor2;
+  };
 
   //creating movie obj
   var movie = {
+    id: generateId(),
     movieName: movieName,
     firstName: directorFirstName,
     lastName: directorLastName,
@@ -155,6 +172,7 @@ document.addEventListener("submit", function (event) {
     runtime: runtime,
     description: description,
 };
+
 form.reset();
 
 //saving to local storage
